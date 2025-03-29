@@ -2,25 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Link, router } from 'expo-router';
 
-export default function HomeScreen() {
+export default function Fridge() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to My App</Text>
       
       {/* Option 1: Using the Link component */}
-      <Link href="/fridge" asChild>
+      <Link href="/camera" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Go to Fridge (Link)</Text>
+          <Text style={styles.buttonText}>Camera</Text>
         </Pressable>
       </Link>
-      
-      {/* Option 2: Using the router.push method */}
-      <Pressable 
-        style={[styles.button, styles.buttonAlt]} 
-        onPress={() => router.push('/fridge')}
-      >
-        <Text style={styles.buttonText}>Go to Fridge (router.push)</Text>
-      </Pressable>
     </View>
   );
 }
