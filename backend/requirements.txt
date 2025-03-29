@@ -1,3 +1,4 @@
 fastapi[standard]
 pytesseract==0.3.13
 python-multipart==0.0.20
+pillow==11.1.0
