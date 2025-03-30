@@ -2,3 +2,6 @@ fastapi[standard]
 pytesseract==0.3.13
 python-multipart==0.0.20
 pillow==11.1.0
+langgraph==0.3.21
+langchain-mistralai==0.2.10
+python-dotenv==1.1.0
