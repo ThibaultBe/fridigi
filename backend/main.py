@@ -156,6 +156,7 @@ receipt_graph.add_edge("notify_user", END) # After notifying the user, we end
 
 compiled_graph = receipt_graph.compile()
 
+"""
 image = Image.open("list.png")
 # Perform OCR using pytesseract
 text = pytesseract.image_to_string(image)
@@ -168,6 +169,7 @@ retrieved_text = compiled_graph.invoke(
         "messages": [],
     }
 )
+"""
 
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile):
@@ -194,4 +196,4 @@ async def create_upload_file(file: UploadFile):
         }
     )
     
-    return {"filename": file.filename, "text": text}
+    return {"filename": file.filename, "text": retrieved_text}
