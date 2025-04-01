@@ -39,7 +39,6 @@ class ReceiptState(TypedDict):
 # -- Define our nodes -- #
 def read_receipt(state: ReceiptState):
     extracted_text = state["extracted_text"]
-    print(f"Assistant is processing a file of size {len(extracted_text)} bytes")
     # We don't alter the state, so we return it unchanged
     return {}
 
@@ -84,7 +83,7 @@ def handle_non_grocery(state: ReceiptState):
     return {}
 
 def drafting_response(state: ReceiptState):
-    time.sleep(1)
+    time.sleep(2)
     extract_text = state["extracted_text"]
 
     prompt = f"""
@@ -156,11 +155,11 @@ receipt_graph.add_edge("notify_user", END) # After notifying the user, we end
 
 compiled_graph = receipt_graph.compile()
 
-"""
-image = Image.open("list.png")
+
+image = Image.open("walmart.png")
 # Perform OCR using pytesseract
 text = pytesseract.image_to_string(image)
-print(text)
+print("This is the retrieved OCR: ", text)
 retrieved_text = compiled_graph.invoke(
     {
         "extracted_text": text,
@@ -169,7 +168,7 @@ retrieved_text = compiled_graph.invoke(
         "messages": [],
     }
 )
-"""
+
 
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile):
@@ -186,7 +185,8 @@ async def create_upload_file(file: UploadFile):
     image = Image.open(io.BytesIO(image_data))
     # Perform OCR using pytesseract
     text = pytesseract.image_to_string(image)
-
+    
+    
     retrieved_text = compiled_graph.invoke(
         {
             "extracted_text": text,
